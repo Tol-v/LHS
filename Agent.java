@@ -19,7 +19,21 @@ public class Agent {
     }
     
 
+        private static void printOutput(String msg) {
+    	parser.printOutput(msg);
+    }
     
+    private static KnowledgeBase parseInput(String input) {
+    	try {
+    		parser = new Parser(input, outputName);
+    		KnowledgeBase KB = parser.getKB();
+    		return KB;
+    	}
+    	catch(FileNotFoundException e) {
+    		System.out.println("File Not Found: " + inputName);
+    	}
+    	return null;
+    }
 
     
 
