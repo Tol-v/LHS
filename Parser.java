@@ -62,4 +62,48 @@ public class Parser {
 
         this.KB = new KnowledgeBase(query, KB_Rules);
     }
+
+    //Check that the string has an implication operator
+    public static boolean hasLHS(String clause) {
+        boolean hasLHS = true;
+        int implicationIndex = clause.indexOf("=>");
+        if(implicationIndex == -1) {
+            hasLHS = false;
+        }
+        return hasLHS;
+    }
+
+    public static String getLHS(String clause) {
+        final String implicationOperator = "=>";
+
+        int implicationIndex = clause.indexOf(implicationOperator);
+        return clause.substring(0, implicationIndex);
+    }
+
+    public static String getRHS(String clause) {
+        final String implicationOperator = "=>";
+        final int implicationOperatorLength = implicationOperator.length();
+
+        int implicationIndex = clause.indexOf(implicationOperator);
+        return clause.substring(implicationIndex+implicationOperatorLength, clause.length());
+    }
+
+    //Parse a string with multiple predicates into individual ones (only occurs on LHS)
+    public static ArrayList<String> separateLHS(String str) {
+        final int DOESNT_EXIST = -1;
+
+        ArrayList<String> preds = new ArrayList<String>();
+        int currAmp = str.indexOf('&');
+
+        while(currAmp != DOESNT_EXIST) {
+            String newPred = str.substring(0, currAmp);
+            preds.add(newPred);
+
+            str = str.substring(currAmp+1, str.length());
+            currAmp = str.indexOf('&');
+        }
+        preds.add(str);
+
+        return preds;
+    }
 }
