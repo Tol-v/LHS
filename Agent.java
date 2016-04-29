@@ -35,6 +35,18 @@ public class Agent {
     	return null;
     }
 
+	private static boolean searchKB(KnowledgeBase KB, Predicate query) {
+    	boolean canInfer = true;
+    	ArrayList<Substitution> sublist = new ArrayList<Substitution>();
+    	sublist = generatorOR(KB, query, sublist);
+    	
+    	if(sublist == null) {
+    		canInfer = false;
+    	}
+    	
+    	return canInfer;
+    }
+	
 	private static ArrayList<Substitution> generatorAND(KnowledgeBase KB, ArrayList<Predicate> goals, ArrayList<Substitution> sublist) {
     	ArrayList<Substitution> subsRestGoals = new ArrayList<Substitution>();
     	if(sublist == null) {
