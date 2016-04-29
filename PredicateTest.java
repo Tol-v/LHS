@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-
 public class PredicateTest {
      static ArrayList<String> args_empty = new ArrayList<String>();
     static Predicate pr1;
