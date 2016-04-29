@@ -34,4 +34,21 @@ public class Substitution {
 
         return equal;
     }
+	
+	public Predicate makeSubstitution(Predicate pred) {
+		Predicate subbed = null;
+		
+		if(pred.hasVariables()) {
+			int index = pred.getVarIndex();
+			String var = pred.getArgs().get(index);
+			
+			if(var.equals(this.variable)) { //make sure variable in substitution = variable in predicate
+				ArrayList<String> newArgs = pred.getArgs();
+				newArgs.set(index, this.constant);
+				subbed = new Predicate(pred.getName(), newArgs);
+			}
+		}
+		
+		return subbed;
+	}
 }
