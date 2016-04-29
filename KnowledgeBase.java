@@ -28,4 +28,28 @@ public class KnowledgeBase {
 
         return rules;
     }
+
+    //Do the constants in two predicates match?
+    private boolean nonVarArgsMatch(Predicate goal, Predicate KBPred) {
+        //When here, we know the predicates have the same number of arguments
+        boolean match = true;
+
+        for(int i = 0; i < KBPred.getNumArgs(); i++) {
+            String currKBPredArg = KBPred.getArgs().get(i);
+            String currGoalArg = goal.getArgs().get(i);
+
+            //check if the args, from both the KB and the goal predicates, are constants
+            boolean KBPredArgConstant = Character.isUpperCase((currKBPredArg.charAt(0)));
+            boolean goalArgConstant = Character.isUpperCase((currGoalArg.charAt(0)));
+
+            //If both predicate args are constant, check if equal
+            if(KBPredArgConstant && goalArgConstant) {
+                if(!currKBPredArg.equals(currGoalArg)) {
+                    match = false;
+                }
+            }
+        }
+
+        return match;
+    }
 }
