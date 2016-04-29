@@ -107,6 +107,30 @@ public class Parser {
         return preds;
     }
 
+    //Parse an individual predicate into predicate, variables, and constants
+    public static Predicate readPredicate(String unparsedPred) {
+        final int DOESNT_EXIST = -1;
+
+        int openParIndex = unparsedPred.indexOf('(');
+        int closeParIndex = unparsedPred.indexOf(')');
+        String name = unparsedPred.substring(0, openParIndex);
+
+        ArrayList<String> args = new ArrayList<String>();
+        if (openParIndex == DOESNT_EXIST)
+            return new Predicate(name, args);
+        int commaIndex = unparsedPred.indexOf(',');
+        if(commaIndex == DOESNT_EXIST) {
+            String var = unparsedPred.substring(openParIndex+1, closeParIndex);
+            args.add(var);
+        }
+        else {
+            String var1 = unparsedPred.substring(openParIndex+1, commaIndex);
+            String var2 = unparsedPred.substring(commaIndex+1, closeParIndex);
+            args.add(var1);
+            args.add(var2);
+        }
+        return new Predicate(name, args);
+    }
     public static ArrayList<String> readLines(int numLines, Scanner in) {
         int numLinesRead = 0;
         ArrayList<String> lines = new ArrayList<String>();
