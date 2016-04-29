@@ -83,7 +83,43 @@ public class Agent {
     	return sublist;
     }
 	
-
+private static ArrayList<Substitution> Unify(Predicate rhs, Predicate goal, ArrayList<Substitution> sublist) {
+    	//RHS obtained from KB
+    	if(rhs.getName().equals(goal.getName())) {
+    		if(rhs.hasVariables() || goal.hasVariables()) {//SUBCASE I: RHS has a variable, make substitution and update sublist
+				Substitution newSub = new Substitution(rhs, goal);
+    			boolean alreadyExists = false;
+    			for(Substitution currSub : sublist) {
+    				if(newSub.equals(currSub)) {
+    					alreadyExists = true;
+    				}
+    			}
+    			if(!alreadyExists) {
+    				sublist.add(newSub);
+    			}
+    		}
+    		else if(!rhs.equals(goal)) {//SUBCASE II: RHS has only objects; if RHS != goal, return null
+    			sublist = null;
+    		}
+    		//SUBCASE III: RHS RHS has only objects; if RHS = goal, return sublist
+    	}
+    	return sublist;
+    }
+    
+    private static Predicate Substitute(ArrayList<Substitution> sublist, Predicate goal) {
+    	Predicate newPred = null;
+    	for(Substitution sub : sublist) {
+    		newPred = sub.makeSubstitution(goal);
+    		if(newPred != null) {
+    			break;
+    		}
+    	}
+    	
+    	if(newPred != null) {
+    		goal = newPred;
+    	}
+    	return goal;
+    }
 
 
 	
