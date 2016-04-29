@@ -1,5 +1,0 @@
-Func1(Frog,a)
-3
-Func2(Frog,Green)
-Func1(Frog,Yellow)
-Func1(Frog,Black)

@@ -8,5 +8,7 @@
 
 [Риски] (docs/risks.md)
 
+[ТЗ] (docs/tz.md)
+
 [![Circle CI](https://circleci.com/gh/Tol-v/LHS/tree/master.svg?style=svg)] (https://circleci.com/gh/Tol-v/LHS/tree/master)
  [![Codetree](https://codetree.com/images/managed-with-codetree.svg)] (https://codetree.com/projects/fzEy)
