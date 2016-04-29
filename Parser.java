@@ -106,4 +106,20 @@ public class Parser {
 
         return preds;
     }
+
+    public static ArrayList<String> readLines(int numLines, Scanner in) {
+        int numLinesRead = 0;
+        ArrayList<String> lines = new ArrayList<String>();
+
+        while(in.hasNextLine()) {
+            String nextLine = in.nextLine();
+            numLinesRead++;
+            lines.add(nextLine);
+            if(numLinesRead == numLines) {
+                break;
+            }
+        }
+
+        return lines;
+    }
 }
