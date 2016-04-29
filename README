@@ -1,3 +1,4 @@
-This is an agent which takes an input file (input.txt) and determines whether the top statementin the file is true based on the following predicates given. See input.txt in this directory for an example of the input file structure. Output.txt will output T/F.
+Backward-Chaining algorithms for First Order Logic Knowledge Bases
 
-
+[![Circle CI](https://circleci.com/gh/Tol-v/LHS.svg?style=svg)](https://circleci.com/gh/Tol-v/LHS)
+ 
