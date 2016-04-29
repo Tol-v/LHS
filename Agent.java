@@ -36,7 +36,23 @@ public class Agent {
     }
 
     
-
+    private static ArrayList<Substitution> generatorOR(KnowledgeBase KB, Predicate goal, ArrayList<Substitution> sublist) {
+    	ArrayList<Rule> matchingRules = KB.fetchRules(goal);;
+    	
+    	if(matchingRules.size() == 0) {
+    		return null;
+    	}
+    	for(Rule currRule : matchingRules) {
+    		ArrayList<Substitution> newSubs = generatorAND(KB, currRule.getLHS(), Unify(currRule.getRHS(), goal, sublist));
+    		if(newSubs == null) {
+    			return null;
+    		}
+    		else {
+    			sublist.addAll(newSubs);
+    		}
+    	}
+    	return sublist;
+    }
 	
 
 
