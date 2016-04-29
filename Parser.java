@@ -146,4 +146,31 @@ public class Parser {
 
         return lines;
     }
+
+    public void printOutput(String msg) {
+        msg += "\n";
+
+        File outputFile = new File(outputName);
+        try {
+            if(outputFile.exists()) {
+                outputFile.delete();
+            }
+            outputFile.createNewFile();
+
+            boolean append = true;
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile, append));
+            //writer.flush();
+
+            writer.write(msg);
+            writer.close();
+        }
+        catch (IOException e) {
+            System.out.println("I/O Error: output file");
+            e.printStackTrace();
+        }
+    }
+
+    public KnowledgeBase getKB() {
+        return this.KB;
+    }
 }
